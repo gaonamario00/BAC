@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login de Usuario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Formulario de login -->
+<form id="formLogin">
+  <label for="usuario">Usuario:</label>
+  <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
+  <label for="contrasena">Contraseña:</label>
+  <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+  <button type="button" onclick="verificarLogin()">Iniciar Sesión</button>
+</form>
+
+<!-- Área para mostrar mensajes -->
+<div id="mensaje"></div>
+
+<script>
+// Datos ficticios de usuarios se cargarán desde usuarios.txt
+let usuarios;
+
+function cargarUsuarios() {
+  fetch('usuarios.txt')
+    .then(response => response.json())
+    .then(data => {
+      usuarios = data;
+    })
+    .catch(error => console.error('Error al cargar usuarios:', error));
+}
+
+// Llamar a la función para cargar usuarios cuando se cargue la página
+cargarUsuarios();
+
+let usuarioAutenticado = false; // Simulamos que el usuario no está autenticado al principio
+
+function verificarLogin() {
+  const usuario = document.getElementById('usuario').value;
+  const contrasena = document.getElementById('contrasena').value;
+
+  // Verificar las credenciales (esto es solo un ejemplo, en un entorno real, deberías verificar las credenciales en el servidor)
+  const usuarioEncontrado = usuarios.find(u => u.usuario === usuario && u.contrasena === contrasena);
+
+  if (usuarioEncontrado) {
+    // Autenticación exitosa
+    usuarioAutenticado = true;
+    mostrarMensaje('Inicio de sesión exitoso');
+    // Redirigir al usuario a la página de perfil mediante ID
+    window.location.href = `perfil.html?id=${usuarioEncontrado.id}`;
+  } else {
+    // Autenticación fallida
+    mostrarMensaje('Nombre de usuario o contraseña incorrectos');
+  }
+}
+
+function mostrarMensaje(mensaje) {
+  const mensajeElemento = document.getElementById('mensaje');
+  mensajeElemento.innerHTML = mensaje;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "usuario": "Mario Gaona", "contrasena": "123456", "direccion": "Calle Falsa 123", "telefono": "555-1234", "correo": "mario@example.com" },
+  { "id": 2, "usuario": "Daniel", "contrasena": "12345", "direccion": "Avenida Imaginaria 456", "telefono": "555-5678", "correo": "daniel@example.com" },
+  { "id": 3, "usuario": "Alberto", "contrasena": "1234", "direccion": "Carrera Inexistente 789", "telefono": "555-9012", "correo": "alberto@example.com" }
+]
